@@ -6,4 +6,6 @@ module com.jdelijser.bibliotheek {
 
     opens com.jdelijser.bibliotheek to javafx.fxml;
     exports com.jdelijser.bibliotheek;
+    exports com.jdelijser.bibliotheek.controller;
+    opens com.jdelijser.bibliotheek.controller to javafx.fxml;
 }

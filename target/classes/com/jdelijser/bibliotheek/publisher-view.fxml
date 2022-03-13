@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+      prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.jdelijser.bibliotheek.controller.PublisherController">
+    <children>
+        <ListView prefHeight="400.0" prefWidth="401.0">
+        </ListView>
+        <VBox prefHeight="400.0" prefWidth="262.0">
+            <children>
+                <Label prefHeight="26.0" prefWidth="161.0" text="Name:" textFill="#8a8a8a"/>
+                <Label prefHeight="26.0" prefWidth="161.0" text="Publisher name">
+                    <VBox.margin>
+                        <Insets bottom="10.0"/>
+                    </VBox.margin>
+                </Label>
+                <Button mnemonicParsing="false" onAction="#deletePublisher" prefHeight="25.0" prefWidth="161.0"
+                        text="Delete publisher">
+                </Button>
+            </children>
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </padding>
+        </VBox>
+        <VBox prefHeight="400.0" prefWidth="174.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#backToLibrary" prefHeight="25.0" prefWidth="161.0"
+                        text="Back to library">
+                    <VBox.margin>
+                        <Insets bottom="15.0"/>
+                    </VBox.margin>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#addPublisher" prefHeight="25.0" prefWidth="161.0" text="Add publisher">
+                </Button>
+            </children>
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </padding>
+        </VBox>
+    </children>
+</HBox>
