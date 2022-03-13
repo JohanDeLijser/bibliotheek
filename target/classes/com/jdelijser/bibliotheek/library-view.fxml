@@ -11,7 +11,7 @@
       prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.jdelijser.bibliotheek.controller.LibraryController">
     <children>
-        <ListView prefHeight="400.0" prefWidth="401.0">
+        <ListView prefHeight="400.0" prefWidth="401.0" fx:id="bookList">
         </ListView>
         <VBox prefHeight="400.0" prefWidth="262.0">
             <children>

@@ -1,13 +1,13 @@
 package com.jdelijser.bibliotheek.model;
 
-public class Book {
+public class BookNew {
     public String title;
-    public String author;
-    public String genre;
-    public String publisher;
+    public Author author;
+    public Genre genre;
+    public Publisher publisher;
     public String date;
 
-    public Book(String title, String author, String genre, String publisher, String date) {
+    public BookNew(String title, Author author, Genre genre, Publisher publisher, String date) {
         this.title = title;
         this.author = author;
         this.genre = genre;
