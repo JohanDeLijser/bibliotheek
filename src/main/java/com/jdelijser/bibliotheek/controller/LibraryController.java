@@ -6,6 +6,7 @@ import javafx.scene.control.ListView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -31,14 +32,12 @@ public class LibraryController implements Initializable {
     }
 
     @FXML
-    protected void addBook() {
-
+    protected void openAddBook() throws IOException {
+        SceneController.setScene("add-book-view.fxml", "Add book");
     }
 
     @FXML
-    protected void deleteBook() {
-
-    }
+    protected void deleteBook() {}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -46,11 +45,11 @@ public class LibraryController implements Initializable {
     }
 
     private void showBookList() {
-        this.books.add(new Book("Book title", "The author", "The genre", "The publisher", "january 2022"));
-        this.books.add(new Book("Book title 2", "The author", "The genre", "The publisher", "january 2022"));
-        this.books.add(new Book("Book title 3", "The author", "The genre", "The publisher", "january 2022"));
-        this.books.add(new Book("Book title 4", "The author", "The genre", "The publisher", "january 2022"));
-        this.books.add(new Book("Book title 5", "The author", "The genre", "The publisher", "january 2022"));
+        this.books.add(new Book("Book title", "The author", "The genre", "The publisher", LocalDate.of(2022,1, 1)));
+        this.books.add(new Book("Book title 2", "The author", "The genre", "The publisher", LocalDate.of(2022,1, 1)));
+        this.books.add(new Book("Book title 3", "The author", "The genre", "The publisher", LocalDate.of(2022,1, 1)));
+        this.books.add(new Book("Book title 4", "The author", "The genre", "The publisher", LocalDate.of(2022,1, 1)));
+        this.books.add(new Book("Book title 5", "The author", "The genre", "The publisher", LocalDate.of(2022,1, 1)));
 
         for (Book book : this.books) {
             this.bookList.getItems().add(book.title);

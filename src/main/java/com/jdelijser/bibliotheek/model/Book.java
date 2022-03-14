@@ -1,13 +1,15 @@
 package com.jdelijser.bibliotheek.model;
 
+import java.time.LocalDate;
+
 public class Book {
     public String title;
     public String author;
     public String genre;
     public String publisher;
-    public String date;
+    public LocalDate date;
 
-    public Book(String title, String author, String genre, String publisher, String date) {
+    public Book(String title, String author, String genre, String publisher, LocalDate date) {
         this.title = title;
         this.author = author;
         this.genre = genre;
