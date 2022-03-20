@@ -1,6 +1,7 @@
 package com.jdelijser.bibliotheek.controller;
 
 import com.jdelijser.bibliotheek.model.Book;
+import com.jdelijser.bibliotheek.services.FileService;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -35,6 +36,8 @@ public class AddBookController {
             date != null
         ) {
             Book book = new Book(title, author, genre, publisher, date);
+
+            FileService.writeToFile(book.title + " " + book.author, book);
 
             SceneController.toMain();
         }

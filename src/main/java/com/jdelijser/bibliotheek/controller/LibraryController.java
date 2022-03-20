@@ -1,5 +1,6 @@
 package com.jdelijser.bibliotheek.controller;
 import com.jdelijser.bibliotheek.model.Book;
+import com.jdelijser.bibliotheek.services.FileService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -45,14 +46,12 @@ public class LibraryController implements Initializable {
     }
 
     private void showBookList() {
-        this.books.add(new Book("Book title", "The author", "The genre", "The publisher", LocalDate.of(2022,1, 1)));
-        this.books.add(new Book("Book title 2", "The author", "The genre", "The publisher", LocalDate.of(2022,1, 1)));
-        this.books.add(new Book("Book title 3", "The author", "The genre", "The publisher", LocalDate.of(2022,1, 1)));
-        this.books.add(new Book("Book title 4", "The author", "The genre", "The publisher", LocalDate.of(2022,1, 1)));
-        this.books.add(new Book("Book title 5", "The author", "The genre", "The publisher", LocalDate.of(2022,1, 1)));
+        //this.books.add(new Book("Book title", "The author", "The genre", "The publisher", LocalDate.of(2022,1, 1)));
+
+        this.books = FileService.getBooks();
 
         for (Book book : this.books) {
-            this.bookList.getItems().add(book.title);
+            this.bookList.getItems().add(book.title + ", " + book.author);
         }
     }
 }

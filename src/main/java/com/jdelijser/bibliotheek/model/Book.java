@@ -1,8 +1,9 @@
 package com.jdelijser.bibliotheek.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Book {
+public class Book implements Serializable {
     public String title;
     public String author;
     public String genre;
