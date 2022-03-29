@@ -16,31 +16,31 @@
         <VBox prefHeight="400.0" prefWidth="262.0">
             <children>
                 <Label prefHeight="26.0" prefWidth="161.0" text="Title:" textFill="#8a8a8a"/>
-                <Label prefHeight="26.0" prefWidth="161.0" text="Eat that frog!">
+                <Label prefHeight="26.0" prefWidth="161.0" fx:id="bookTitle" text="Eat that frog!">
                     <VBox.margin>
                         <Insets bottom="10.0"/>
                     </VBox.margin>
                 </Label>
                 <Label prefHeight="26.0" prefWidth="161.0" text="Author:" textFill="#8a8a8a"/>
-                <Label prefHeight="26.0" prefWidth="161.0" text="Brian Tracy">
+                <Label prefHeight="26.0" prefWidth="161.0" fx:id="bookAuthor"  text="Brian Tracy">
                     <VBox.margin>
                         <Insets bottom="10.0"/>
                     </VBox.margin>
                 </Label>
                 <Label prefHeight="26.0" prefWidth="161.0" text="Genre:" textFill="#8a8a8a"/>
-                <Label prefHeight="26.0" prefWidth="161.0" text="Psychology">
+                <Label prefHeight="26.0" prefWidth="161.0" fx:id="bookGenre" text="Psychology">
                     <VBox.margin>
                         <Insets bottom="10.0"/>
                     </VBox.margin>
                 </Label>
                 <Label prefHeight="26.0" prefWidth="161.0" text="Publisher:" textFill="#8a8a8a"/>
-                <Label prefHeight="26.0" prefWidth="161.0" text="Maven Publishing">
+                <Label prefHeight="26.0" prefWidth="161.0" fx:id="bookPublisher" text="Maven Publishing">
                     <VBox.margin>
                         <Insets bottom="10.0"/>
                     </VBox.margin>
                 </Label>
                 <Label prefHeight="26.0" prefWidth="161.0" text="Date:" textFill="#8a8a8a"/>
-                <Label prefHeight="26.0" prefWidth="161.0" text="january 2017">
+                <Label prefHeight="26.0" prefWidth="161.0" fx:id="bookDate" text="january 2017">
                     <VBox.margin>
                         <Insets bottom="10.0"/>
                     </VBox.margin>
