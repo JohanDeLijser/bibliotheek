@@ -11,8 +11,8 @@ public class GenreController {
     }
 
     @FXML
-    protected void addGenre() {
-
+    protected void addGenre() throws IOException {
+        SceneController.setScene("add-genre-view.fxml", "Add book");
     }
 
     @FXML

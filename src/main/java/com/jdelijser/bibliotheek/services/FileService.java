@@ -7,8 +7,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class FileService {
-    public static void writeToFile(String fileName, Object object) {
-        try (FileOutputStream fos = new FileOutputStream("books/files/" + FileService.formatTitle(fileName) + ".dat");
+    public static void writeToFile(String folder, String fileName, Object object) {
+        try (FileOutputStream fos = new FileOutputStream(folder + "/files/" + FileService.formatTitle(fileName) + ".dat");
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {
 
             oos.writeObject(object);

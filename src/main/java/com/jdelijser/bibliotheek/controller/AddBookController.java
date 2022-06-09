@@ -37,7 +37,7 @@ public class AddBookController {
         ) {
             Book book = new Book(title, author, genre, publisher, date);
 
-            FileService.writeToFile(book.title + " " + book.author, book);
+            FileService.writeToFile("book", book.title + " " + book.author, book);
 
             SceneController.toMain();
         }
