@@ -1,5 +1,6 @@
 package com.jdelijser.bibliotheek.services;
 
+import com.jdelijser.bibliotheek.controller.SceneController;
 import com.jdelijser.bibliotheek.model.Book;
 
 import java.io.*;
@@ -13,6 +14,25 @@ public class FileService {
             oos.writeObject(object);
         } catch (IOException ex) {
             ex.printStackTrace();
+        }
+    }
+
+    public static String getFileName(Book book) {
+        return FileService.formatTitle(book.title + " " + book.author);
+    }
+
+    public static void deleteActiveBook() throws IOException {
+        Book activeBook = ActiveBook.getInstance().getBook();
+
+        if (activeBook != null) {
+            File myObj = new File("books/files/" + FileService.formatTitle(FileService.getFileName(activeBook)) + ".dat");
+
+            if (myObj.delete()) {
+                System.out.println("Deleted the file: " + myObj.getName());
+                SceneController.toMain();
+            } else {
+                System.out.println("Failed to delete the file.");
+            }
         }
     }
 

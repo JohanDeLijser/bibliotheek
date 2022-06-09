@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -54,7 +55,8 @@ public class LibraryController implements Initializable {
     }
 
     @FXML
-    protected void deleteBook() {
+    protected void deleteBook() throws IOException {
+        FileService.deleteActiveBook();
     }
 
     @Override
@@ -76,20 +78,19 @@ public class LibraryController implements Initializable {
         int count = 1;
         for (Book book : this.books) {
             if (book != null) {
-                this.bookList.getItems().add(book);
-
                 if (count == 1) {
-                    ActiveBook activeBook = ActiveBook.getInstance();
-                    Book activeBookItem = activeBook.getBook();
+                    Book activeBook = ActiveBook.getInstance().getBook();
 
-                    if (activeBookItem != null) {
-                        this.setSelectedBook(activeBookItem);
+                    if (activeBook != null) {
+                        this.setSelectedBook(activeBook);
                     } else {
                         this.setSelectedBook(book);
                     }
 
                     count++;
                 }
+
+                this.bookList.getItems().add(book);
             }
         }
 
