@@ -8,16 +8,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.ChoiceBox?>
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="267.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jdelijser.bibliotheek.controller.AddBookController">
     <children>
         <Label prefHeight="27.0" prefWidth="269.0" text="Title" />
         <TextField fx:id="bookTitle" promptText="Book title" />
         <Label prefHeight="27.0" prefWidth="269.0" text="Author" />
-        <TextField fx:id="bookAuthor" promptText="Book author" />
+        <ChoiceBox fx:id="bookAuthor" prefWidth="269.0" />
         <Label prefHeight="27.0" prefWidth="269.0" text="Genre" />
-        <TextField fx:id="bookGenre" promptText="Book genre" />
+        <ChoiceBox fx:id="bookGenre" prefWidth="269.0" />
         <Label prefHeight="27.0" prefWidth="269.0" text="Publisher" />
-        <TextField fx:id="bookPublisher" promptText="Book publisher" />
+        <ChoiceBox fx:id="bookPublisher" prefWidth="269.0"/>
         <Label prefHeight="27.0" prefWidth="269.0" text="Date" />
         <DatePicker fx:id="bookDate" prefHeight="25.0" prefWidth="269.0">
             <VBox.margin>

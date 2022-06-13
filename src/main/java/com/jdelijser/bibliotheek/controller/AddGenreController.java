@@ -26,6 +26,6 @@ public class AddGenreController {
 
     @FXML
     protected void cancelGenre() throws IOException {
-        SceneController.toMain();
+        SceneController.setScene("genre-view.fxml", "Genres");
     }
 }

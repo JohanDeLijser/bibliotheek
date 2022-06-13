@@ -1,6 +1,8 @@
 package com.jdelijser.bibliotheek.model;
 
-public class Author {
+import java.io.Serializable;
+
+public class Author implements Serializable {
     public String name;
 
     public Author(String name) {

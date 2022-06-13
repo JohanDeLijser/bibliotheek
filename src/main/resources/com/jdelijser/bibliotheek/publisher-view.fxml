@@ -11,12 +11,12 @@
       prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.jdelijser.bibliotheek.controller.PublisherController">
     <children>
-        <ListView prefHeight="400.0" prefWidth="401.0">
+        <ListView prefHeight="400.0" prefWidth="401.0" fx:id="publisherList">
         </ListView>
         <VBox prefHeight="400.0" prefWidth="262.0">
             <children>
                 <Label prefHeight="26.0" prefWidth="161.0" text="Name:" textFill="#8a8a8a"/>
-                <Label prefHeight="26.0" prefWidth="161.0" text="Publisher name">
+                <Label prefHeight="26.0" prefWidth="161.0" text="Publisher name" fx:id="publisherTitle">
                     <VBox.margin>
                         <Insets bottom="10.0"/>
                     </VBox.margin>

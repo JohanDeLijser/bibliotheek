@@ -1,6 +1,8 @@
 package com.jdelijser.bibliotheek.model;
 
-public class Publisher {
+import java.io.Serializable;
+
+public class Publisher implements Serializable {
     public String name;
 
     public Publisher(String name) {
