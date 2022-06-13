@@ -14,7 +14,7 @@
         <HBox prefHeight="31.0" prefWidth="237.0">
             <children>
                 <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="97.0" text="Cancel" onAction="#cancelGenre"/>
-                <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="98.0" text="Add book" onAction="#addGenre">
+                <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="98.0" text="Add genre" onAction="#addGenre">
                     <HBox.margin>
                         <Insets left="15.0" />
                     </HBox.margin>

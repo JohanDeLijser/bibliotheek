@@ -1,6 +1,8 @@
 package com.jdelijser.bibliotheek.model;
 
-public class Genre {
+import java.io.Serializable;
+
+public class Genre implements Serializable {
     public String name;
 
     public Genre(String name) {

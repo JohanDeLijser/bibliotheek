@@ -15,11 +15,10 @@ public class AddGenreController {
     protected void addGenre() throws IOException {
         String name = this.genreName.getText();
 
-        if (!name.equals("")
-        ) {
+        if (!name.equals("")) {
             Genre genre = new Genre(name);
 
-            FileService.writeToFile("genre", genre.name, genre);
+            FileService.writeToFile("genres", genre.name, genre);
 
             SceneController.setScene("genre-view.fxml", "Genres");
         }
