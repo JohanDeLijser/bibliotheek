@@ -1,4 +1,4 @@
-package com.jdelijser.bibliotheek.services;
+package com.jdelijser.bibliotheek.storage;
 
 import com.jdelijser.bibliotheek.model.Publisher;
 

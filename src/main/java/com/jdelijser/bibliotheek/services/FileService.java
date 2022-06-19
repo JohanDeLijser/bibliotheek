@@ -5,6 +5,10 @@ import com.jdelijser.bibliotheek.model.Author;
 import com.jdelijser.bibliotheek.model.Book;
 import com.jdelijser.bibliotheek.model.Genre;
 import com.jdelijser.bibliotheek.model.Publisher;
+import com.jdelijser.bibliotheek.storage.ActiveAuthor;
+import com.jdelijser.bibliotheek.storage.ActiveBook;
+import com.jdelijser.bibliotheek.storage.ActiveGenre;
+import com.jdelijser.bibliotheek.storage.ActivePublisher;
 
 import java.io.*;
 import java.util.ArrayList;

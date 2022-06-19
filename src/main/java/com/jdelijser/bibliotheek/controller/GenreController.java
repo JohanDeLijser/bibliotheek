@@ -1,7 +1,8 @@
 package com.jdelijser.bibliotheek.controller;
 
 import com.jdelijser.bibliotheek.model.Genre;
-import com.jdelijser.bibliotheek.services.ActiveGenre;
+import com.jdelijser.bibliotheek.services.StorageAdapter;
+import com.jdelijser.bibliotheek.storage.ActiveGenre;
 import com.jdelijser.bibliotheek.services.FileService;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -42,15 +44,19 @@ public class GenreController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.showGenreList();
+        try {
+            this.showGenreList();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setSelectedGenre(Genre genre) {
         this.genreTitle.setText(genre.name);
     }
 
-    public void showGenreList() {
-        this.genres = FileService.getGenres();
+    public void showGenreList() throws SQLException {
+        this.genres = StorageAdapter.getGenres();
 
         int count = 1;
         for (Genre genre : this.genres) {

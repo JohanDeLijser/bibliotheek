@@ -1,7 +1,8 @@
 package com.jdelijser.bibliotheek.controller;
 
 import com.jdelijser.bibliotheek.model.Book;
-import com.jdelijser.bibliotheek.services.ActiveBook;
+import com.jdelijser.bibliotheek.services.StorageAdapter;
+import com.jdelijser.bibliotheek.storage.ActiveBook;
 import com.jdelijser.bibliotheek.services.FileService;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
@@ -9,11 +10,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -55,13 +56,22 @@ public class LibraryController implements Initializable {
     }
 
     @FXML
+    protected void changeSource() throws IOException {
+        SceneController.setScene("source-view.fxml", "Change source");
+    }
+
+    @FXML
     protected void deleteBook() throws IOException {
         FileService.deleteActiveBook();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.showBookList();
+        try {
+            this.showBookList();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setSelectedBook(Book book) {
@@ -72,8 +82,8 @@ public class LibraryController implements Initializable {
         this.bookDate.setText(book.date.toString());
     }
 
-    public void showBookList() {
-        this.books = FileService.getBooks();
+    public void showBookList() throws SQLException {
+        this.books = StorageAdapter.getBooks();
 
         int count = 1;
         for (Book book : this.books) {

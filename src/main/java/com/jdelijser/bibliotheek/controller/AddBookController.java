@@ -5,6 +5,7 @@ import com.jdelijser.bibliotheek.model.Book;
 import com.jdelijser.bibliotheek.model.Genre;
 import com.jdelijser.bibliotheek.model.Publisher;
 import com.jdelijser.bibliotheek.services.FileService;
+import com.jdelijser.bibliotheek.services.StorageAdapter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -60,13 +62,27 @@ public class AddBookController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.addGenresToSelect();
-        this.addAuthorsToSelect();
-        this.addPublishersToSelect();
+        try {
+            this.addGenresToSelect();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            this.addAuthorsToSelect();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            this.addPublishersToSelect();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void addGenresToSelect() {
-        ArrayList<Genre> genres = FileService.getGenres();
+    public void addGenresToSelect() throws SQLException {
+        ArrayList<Genre> genres = StorageAdapter.getGenres();
         ObservableList<String> genreTitles = FXCollections.observableArrayList();;
 
         for(Genre genre : genres) {
@@ -76,8 +92,8 @@ public class AddBookController implements Initializable {
         this.bookGenre.setItems(genreTitles);
     }
 
-    public void addAuthorsToSelect() {
-        ArrayList<Author> authors = FileService.getAuthors();
+    public void addAuthorsToSelect() throws SQLException {
+        ArrayList<Author> authors = StorageAdapter.getAuthors();
         ObservableList<String> authorTitles = FXCollections.observableArrayList();;
 
         for(Author author : authors) {
@@ -87,8 +103,8 @@ public class AddBookController implements Initializable {
         this.bookAuthor.setItems(authorTitles);
     }
 
-    public void addPublishersToSelect() {
-        ArrayList<Publisher> publishers = FileService.getPublishers();
+    public void addPublishersToSelect() throws SQLException {
+        ArrayList<Publisher> publishers = StorageAdapter.getPublishers();
         ObservableList<String> publisherTitles = FXCollections.observableArrayList();;
 
         for(Publisher publisher : publishers) {

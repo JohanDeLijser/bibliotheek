@@ -74,7 +74,13 @@
                     </VBox.margin>
                 </Button>
                 <Button mnemonicParsing="false" onAction="#openAddBook" prefHeight="25.0" prefWidth="161.0"
-                        text="Add book"/>
+                        text="Add book">
+                    <VBox.margin>
+                        <Insets bottom="15.0"/>
+                    </VBox.margin>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#changeSource" prefHeight="25.0" prefWidth="161.0"
+                        text="Change source"/>
             </children>
             <padding>
                 <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>

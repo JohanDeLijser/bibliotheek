@@ -1,7 +1,8 @@
 package com.jdelijser.bibliotheek.controller;
 
 import com.jdelijser.bibliotheek.model.Publisher;
-import com.jdelijser.bibliotheek.services.ActivePublisher;
+import com.jdelijser.bibliotheek.services.StorageAdapter;
+import com.jdelijser.bibliotheek.storage.ActivePublisher;
 import com.jdelijser.bibliotheek.services.FileService;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -42,15 +44,19 @@ public class PublisherController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.showPublisherList();
+        try {
+            this.showPublisherList();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setSelectedPublisher(Publisher publisher) {
         this.publisherTitle.setText(publisher.name);
     }
 
-    public void showPublisherList() {
-        this.publishers = FileService.getPublishers();
+    public void showPublisherList() throws SQLException {
+        this.publishers = StorageAdapter.getPublishers();
 
         int count = 1;
         for (Publisher publisher : this.publishers) {

@@ -1,7 +1,8 @@
 package com.jdelijser.bibliotheek.controller;
 
 import com.jdelijser.bibliotheek.model.Author;
-import com.jdelijser.bibliotheek.services.ActiveAuthor;
+import com.jdelijser.bibliotheek.services.StorageAdapter;
+import com.jdelijser.bibliotheek.storage.ActiveAuthor;
 import com.jdelijser.bibliotheek.services.FileService;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -42,15 +44,19 @@ public class AuthorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.showAuthorList();
+        try {
+            this.showAuthorList();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setSelectedAuthor(Author author) {
         this.authorTitle.setText(author.name);
     }
 
-    public void showAuthorList() {
-        this.authors = FileService.getAuthors();
+    public void showAuthorList() throws SQLException {
+        this.authors = StorageAdapter.getAuthors();
 
         int count = 1;
         for (Author author : this.authors) {
