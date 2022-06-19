@@ -38,8 +38,8 @@ public class PublisherController implements Initializable {
     }
 
     @FXML
-    protected void deletePublisher() throws IOException {
-        FileService.deleteActivePublisher();
+    protected void deletePublisher() throws IOException, SQLException {
+        StorageAdapter.deleteActivePublisher();
     }
 
     @Override

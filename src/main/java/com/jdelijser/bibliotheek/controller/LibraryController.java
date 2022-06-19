@@ -61,8 +61,8 @@ public class LibraryController implements Initializable {
     }
 
     @FXML
-    protected void deleteBook() throws IOException {
-        FileService.deleteActiveBook();
+    protected void deleteBook() throws IOException, SQLException {
+        StorageAdapter.deleteActiveBook();
     }
 
     @Override

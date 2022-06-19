@@ -40,6 +40,10 @@ public class FileService {
         return FileService.formatTitle(publisher.name);
     }
 
+    public static void addBook(Book book) {
+        FileService.writeToFile("books", book.title + " " + book.author, book);
+    }
+
     public static void deleteActiveBook() throws IOException {
         Book activeBook = ActiveBook.getInstance().getBook();
 

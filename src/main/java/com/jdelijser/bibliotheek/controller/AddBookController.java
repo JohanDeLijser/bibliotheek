@@ -34,7 +34,7 @@ public class AddBookController implements Initializable {
     public DatePicker bookDate;
 
     @FXML
-    protected void addBook() throws IOException {
+    protected void addBook() throws IOException, SQLException {
         String title = this.bookTitle.getText();
         String author = this.bookAuthor.getValue();
         String genre = this.bookGenre.getValue();
@@ -49,7 +49,7 @@ public class AddBookController implements Initializable {
         ) {
             Book book = new Book(title, author, genre, publisher, date);
 
-            FileService.writeToFile("books", book.title + " " + book.author, book);
+            StorageAdapter.addBook(book);
 
             SceneController.toMain();
         }

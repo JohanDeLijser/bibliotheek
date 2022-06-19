@@ -38,8 +38,8 @@ public class AuthorController implements Initializable {
     }
 
     @FXML
-    protected void deleteAuthor() throws IOException {
-        FileService.deleteActiveAuthor();
+    protected void deleteAuthor() throws IOException, SQLException {
+        StorageAdapter.deleteActiveAuthor();
     }
 
     @Override

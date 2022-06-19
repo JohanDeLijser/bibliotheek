@@ -4,6 +4,10 @@ import com.jdelijser.bibliotheek.model.Author;
 import com.jdelijser.bibliotheek.model.Book;
 import com.jdelijser.bibliotheek.model.Genre;
 import com.jdelijser.bibliotheek.model.Publisher;
+import com.jdelijser.bibliotheek.storage.ActiveAuthor;
+import com.jdelijser.bibliotheek.storage.ActiveBook;
+import com.jdelijser.bibliotheek.storage.ActiveGenre;
+import com.jdelijser.bibliotheek.storage.ActivePublisher;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -13,6 +17,22 @@ public class DatabaseService {
     private static Statement getStatement() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dev_bibliotheek", "root", null);
         return connection.createStatement();
+    }
+
+    public static void addBook(Book book) throws SQLException {
+        int genreId = DatabaseService.getAttributeIdByName("genres", book.genre);
+        int authorId = DatabaseService.getAttributeIdByName("authors", book.author);
+        int publisherId = DatabaseService.getAttributeIdByName("publishers", book.publisher);
+
+        if (genreId != 0 || authorId != 0 || publisherId != 0) {
+            DatabaseService
+                    .getStatement()
+                    .execute(
+                            "insert into books (title, genre_id, author_id, publisher_id, date) VALUES ('"+book.title+"',"+genreId+","+authorId+","+publisherId+",'"+book.date+"')"
+                    );
+        } else {
+            throw new Error("Can't add book because meta data doesnt match");
+        }
     }
 
     public static ArrayList<Book> getBooks() throws SQLException {
@@ -66,6 +86,30 @@ public class DatabaseService {
         return authors;
     }
 
+    public static void deleteActiveBook() throws SQLException {
+        Book activeBook = ActiveBook.getInstance().getBook();
+
+        DatabaseService.getStatement().execute("delete * from books where title is '" + activeBook.title + "'");
+    }
+
+    public static void deleteActiveGenre() throws SQLException {
+        Genre activeGenre = ActiveGenre.getInstance().getGenre();
+
+        DatabaseService.getStatement().execute("delete * from genres where title is '" + activeGenre.name + "'");
+    }
+
+    public static void deleteActiveAuthor() throws SQLException {
+        Author activeAuthor = ActiveAuthor.getInstance().getAuthor();
+
+        DatabaseService.getStatement().execute("delete * from authors where title is '" + activeAuthor.name + "'");
+    }
+
+    public static void deleteActivePublisher() throws SQLException {
+        Publisher activePublisher = ActivePublisher.getInstance().getPublisher();
+
+        DatabaseService.getStatement().execute("delete * from publishers where title is '" + activePublisher.name + "'");
+    }
+
     public static String getAttributeById(String attribute, int id) throws SQLException {
         ResultSet resultSet = DatabaseService.getStatement().executeQuery("select name from " + attribute + " where ID = " + id);
 
@@ -74,5 +118,15 @@ public class DatabaseService {
         }
 
         return "";
+    }
+
+    public static int getAttributeIdByName(String attribute, String name) throws SQLException {
+        ResultSet resultSet = DatabaseService.getStatement().executeQuery("select ID from " + attribute + " where name = '" + name + "'");
+
+        while (resultSet.next()) {
+            return resultSet.getInt("ID");
+        }
+
+        return 0;
     }
 }

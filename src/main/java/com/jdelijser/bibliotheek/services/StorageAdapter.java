@@ -6,6 +6,7 @@ import com.jdelijser.bibliotheek.model.Genre;
 import com.jdelijser.bibliotheek.model.Publisher;
 import com.jdelijser.bibliotheek.storage.ActiveSource;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -21,6 +22,14 @@ public class StorageAdapter {
         types.add(STORAGE_METHOD_DATABASE);
 
         return types;
+    }
+
+    public static void addBook(Book book) throws SQLException {
+        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+            DatabaseService.addBook(book);
+        }
+
+        FileService.addBook(book);
     }
 
     public static ArrayList<Book> getBooks() throws SQLException {
@@ -53,5 +62,37 @@ public class StorageAdapter {
         }
 
         return FileService.getPublishers();
+    }
+
+    public static void deleteActiveBook() throws SQLException, IOException {
+        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+            DatabaseService.deleteActiveBook();
+        }
+
+        FileService.deleteActiveBook();
+    }
+
+    public static void deleteActiveGenre() throws SQLException, IOException {
+        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+            DatabaseService.deleteActiveGenre();
+        }
+
+        FileService.deleteActiveGenre();
+    }
+
+    public static void deleteActiveAuthor() throws SQLException, IOException {
+        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+            DatabaseService.deleteActiveAuthor();
+        }
+
+        FileService.deleteActiveAuthor();
+    }
+
+    public static void deleteActivePublisher() throws SQLException, IOException {
+        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+            DatabaseService.deleteActivePublisher();
+        }
+
+        FileService.deleteActivePublisher();
     }
 }

@@ -38,8 +38,8 @@ public class GenreController implements Initializable {
     }
 
     @FXML
-    protected void deleteGenre() throws IOException {
-        FileService.deleteActiveGenre();
+    protected void deleteGenre() throws IOException, SQLException {
+        StorageAdapter.deleteActiveGenre();
     }
 
     @Override
