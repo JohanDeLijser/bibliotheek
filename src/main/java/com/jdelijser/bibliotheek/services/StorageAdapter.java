@@ -27,9 +27,37 @@ public class StorageAdapter {
     public static void addBook(Book book) throws SQLException {
         if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
             DatabaseService.addBook(book);
+            return;
         }
 
         FileService.addBook(book);
+    }
+
+    public static void addGenre(Genre genre) throws SQLException {
+        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+            DatabaseService.addGenre(genre);
+            return;
+        }
+
+        FileService.writeToFile("genres", genre.name, genre);
+    }
+
+    public static void addAuthor(Author author) throws SQLException {
+        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+            DatabaseService.addAuthor(author);
+            return;
+        }
+
+        FileService.writeToFile("authors", author.name, author);
+    }
+
+    public static void addPublisher(Publisher publisher) throws SQLException {
+        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+            DatabaseService.addPublisher(publisher);
+            return;
+        }
+
+        FileService.writeToFile("publishers", publisher.name, publisher);
     }
 
     public static ArrayList<Book> getBooks() throws SQLException {
@@ -67,6 +95,7 @@ public class StorageAdapter {
     public static void deleteActiveBook() throws SQLException, IOException {
         if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
             DatabaseService.deleteActiveBook();
+            return;
         }
 
         FileService.deleteActiveBook();
@@ -75,6 +104,7 @@ public class StorageAdapter {
     public static void deleteActiveGenre() throws SQLException, IOException {
         if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
             DatabaseService.deleteActiveGenre();
+            return;
         }
 
         FileService.deleteActiveGenre();
@@ -83,6 +113,7 @@ public class StorageAdapter {
     public static void deleteActiveAuthor() throws SQLException, IOException {
         if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
             DatabaseService.deleteActiveAuthor();
+            return;
         }
 
         FileService.deleteActiveAuthor();
@@ -91,6 +122,7 @@ public class StorageAdapter {
     public static void deleteActivePublisher() throws SQLException, IOException {
         if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
             DatabaseService.deleteActivePublisher();
+            return;
         }
 
         FileService.deleteActivePublisher();

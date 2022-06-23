@@ -35,6 +35,18 @@ public class DatabaseService {
         }
     }
 
+    public static void addGenre(Genre genre) throws SQLException {
+        DatabaseService.getStatement().execute("insert into genres (name) VALUES ('" + genre.name + "')");
+    }
+
+    public static void addAuthor(Author author) throws SQLException {
+        DatabaseService.getStatement().execute("insert into authors (name) VALUES ('" + author.name + "')");
+    }
+
+    public static void addPublisher(Publisher publisher) throws SQLException {
+        DatabaseService.getStatement().execute("insert into publishers (name) VALUES ('" + publisher.name + "')");
+    }
+
     public static ArrayList<Book> getBooks() throws SQLException {
         ArrayList<Book> books = new ArrayList<>();
         Statement statement = DatabaseService.getStatement();
@@ -88,26 +100,31 @@ public class DatabaseService {
 
     public static void deleteActiveBook() throws SQLException {
         Book activeBook = ActiveBook.getInstance().getBook();
+        int genreId = DatabaseService.getAttributeIdByName("genres", activeBook.genre);
+        int authorId = DatabaseService.getAttributeIdByName("authors", activeBook.author);
+        int publisherId = DatabaseService.getAttributeIdByName("publishers", activeBook.publisher);
 
-        DatabaseService.getStatement().execute("delete * from books where title is '" + activeBook.title + "'");
+        DatabaseService
+                .getStatement()
+                .execute("DELETE from books WHERE title = '" + activeBook.title + "' AND genre_id = " + genreId + " AND author_id = " + authorId + " AND publisher_id = " + publisherId);
     }
 
     public static void deleteActiveGenre() throws SQLException {
         Genre activeGenre = ActiveGenre.getInstance().getGenre();
 
-        DatabaseService.getStatement().execute("delete * from genres where title is '" + activeGenre.name + "'");
+        DatabaseService.getStatement().execute("DELETE from genres WHERE name = '" + activeGenre.name + "'");
     }
 
     public static void deleteActiveAuthor() throws SQLException {
         Author activeAuthor = ActiveAuthor.getInstance().getAuthor();
 
-        DatabaseService.getStatement().execute("delete * from authors where title is '" + activeAuthor.name + "'");
+        DatabaseService.getStatement().execute("DELETE from authors WHERE name = '" + activeAuthor.name + "'");
     }
 
     public static void deleteActivePublisher() throws SQLException {
         Publisher activePublisher = ActivePublisher.getInstance().getPublisher();
 
-        DatabaseService.getStatement().execute("delete * from publishers where title is '" + activePublisher.name + "'");
+        DatabaseService.getStatement().execute("DELETE from publishers WHERE name = '" + activePublisher.name + "'");
     }
 
     public static String getAttributeById(String attribute, int id) throws SQLException {
