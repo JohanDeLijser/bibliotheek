@@ -5,6 +5,7 @@ import com.jdelijser.bibliotheek.model.Book;
 import com.jdelijser.bibliotheek.model.Genre;
 import com.jdelijser.bibliotheek.model.Publisher;
 import com.jdelijser.bibliotheek.storage.ActiveSource;
+import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -95,6 +96,7 @@ public class StorageAdapter {
     public static void deleteActiveBook() throws SQLException, IOException {
         if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
             DatabaseService.deleteActiveBook();
+
             return;
         }
 
@@ -103,7 +105,16 @@ public class StorageAdapter {
 
     public static void deleteActiveGenre() throws SQLException, IOException {
         if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
-            DatabaseService.deleteActiveGenre();
+            try {
+                DatabaseService.deleteActiveGenre();
+            } catch (SQLException exception) {
+                if (Objects.equals(1451, exception.getErrorCode())) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("You can't delete this genre because its linked to a book");
+                    alert.show();
+                }
+            }
+
             return;
         }
 
@@ -112,7 +123,16 @@ public class StorageAdapter {
 
     public static void deleteActiveAuthor() throws SQLException, IOException {
         if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
-            DatabaseService.deleteActiveAuthor();
+            try {
+                DatabaseService.deleteActiveAuthor();
+            } catch (SQLException exception) {
+                if (Objects.equals(1451, exception.getErrorCode())) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("You can't delete this author because its linked to a book");
+                    alert.show();
+                }
+            }
+
             return;
         }
 
@@ -121,7 +141,16 @@ public class StorageAdapter {
 
     public static void deleteActivePublisher() throws SQLException, IOException {
         if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
-            DatabaseService.deleteActivePublisher();
+            try {
+                DatabaseService.deleteActivePublisher();
+            } catch (SQLException exception) {
+                if (Objects.equals(1451, exception.getErrorCode())) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("You can't delete this publisher because its linked to a book");
+                    alert.show();
+                }
+            }
+
             return;
         }
 

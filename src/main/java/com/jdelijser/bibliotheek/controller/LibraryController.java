@@ -3,7 +3,6 @@ package com.jdelijser.bibliotheek.controller;
 import com.jdelijser.bibliotheek.model.Book;
 import com.jdelijser.bibliotheek.services.StorageAdapter;
 import com.jdelijser.bibliotheek.storage.ActiveBook;
-import com.jdelijser.bibliotheek.services.FileService;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

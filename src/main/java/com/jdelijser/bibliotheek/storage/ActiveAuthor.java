@@ -2,7 +2,7 @@ package com.jdelijser.bibliotheek.storage;
 
 import com.jdelijser.bibliotheek.model.Author;
 
-public final class ActiveAuthor {
+public class ActiveAuthor {
 
     private static ActiveAuthor INSTANCE;
     private Author activeAuthor;

@@ -3,7 +3,6 @@ package com.jdelijser.bibliotheek.controller;
 import com.jdelijser.bibliotheek.model.Genre;
 import com.jdelijser.bibliotheek.services.StorageAdapter;
 import com.jdelijser.bibliotheek.storage.ActiveGenre;
-import com.jdelijser.bibliotheek.services.FileService;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,12 +61,13 @@ public class GenreController implements Initializable {
         for (Genre genre : this.genres) {
             if (genre != null) {
                 if (count == 1) {
-                    Genre activeGenre = ActiveGenre.getInstance().getGenre();
+                    ActiveGenre activeGenre = ActiveGenre.getInstance();
 
-                    if (activeGenre != null) {
-                        this.setSelectedGenre(activeGenre);
+                    if (activeGenre.getGenre() != null) {
+                        this.setSelectedGenre(activeGenre.getGenre());
                     } else {
                         this.setSelectedGenre(genre);
+                        activeGenre.setGenre(genre);
                     }
 
                     count++;

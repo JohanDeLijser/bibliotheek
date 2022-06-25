@@ -3,7 +3,6 @@ package com.jdelijser.bibliotheek.controller;
 import com.jdelijser.bibliotheek.model.Author;
 import com.jdelijser.bibliotheek.services.StorageAdapter;
 import com.jdelijser.bibliotheek.storage.ActiveAuthor;
-import com.jdelijser.bibliotheek.services.FileService;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,12 +61,13 @@ public class AuthorController implements Initializable {
         for (Author author : this.authors) {
             if (author != null) {
                 if (count == 1) {
-                    Author activeAuthor = ActiveAuthor.getInstance().getAuthor();
+                    ActiveAuthor activeAuthor = ActiveAuthor.getInstance();
 
-                    if (activeAuthor != null) {
-                        this.setSelectedAuthor(activeAuthor);
+                    if (activeAuthor.getAuthor() != null) {
+                        this.setSelectedAuthor(activeAuthor.getAuthor());
                     } else {
                         this.setSelectedAuthor(author);
+                        activeAuthor.setAuthor(author);
                     }
 
                     count++;

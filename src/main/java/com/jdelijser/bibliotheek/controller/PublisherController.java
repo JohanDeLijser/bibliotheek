@@ -3,7 +3,6 @@ package com.jdelijser.bibliotheek.controller;
 import com.jdelijser.bibliotheek.model.Publisher;
 import com.jdelijser.bibliotheek.services.StorageAdapter;
 import com.jdelijser.bibliotheek.storage.ActivePublisher;
-import com.jdelijser.bibliotheek.services.FileService;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,12 +61,13 @@ public class PublisherController implements Initializable {
         for (Publisher publisher : this.publishers) {
             if (publisher != null) {
                 if (count == 1) {
-                    Publisher activePublisher = ActivePublisher.getInstance().getPublisher();
+                    ActivePublisher activePublisher = ActivePublisher.getInstance();
 
-                    if (activePublisher != null) {
-                        this.setSelectedPublisher(activePublisher);
+                    if (activePublisher.getPublisher() != null) {
+                        this.setSelectedPublisher(activePublisher.getPublisher());
                     } else {
                         this.setSelectedPublisher(publisher);
+                        activePublisher.setPublisher(publisher);
                     }
 
                     count++;
