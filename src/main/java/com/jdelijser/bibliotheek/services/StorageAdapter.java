@@ -1,5 +1,6 @@
 package com.jdelijser.bibliotheek.services;
 
+import com.jdelijser.bibliotheek.controller.SceneController;
 import com.jdelijser.bibliotheek.model.Author;
 import com.jdelijser.bibliotheek.model.Book;
 import com.jdelijser.bibliotheek.model.Genre;
@@ -96,6 +97,7 @@ public class StorageAdapter {
     public static void deleteActiveBook() throws SQLException, IOException {
         if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
             DatabaseService.deleteActiveBook();
+            SceneController.toMain();
 
             return;
         }
@@ -107,6 +109,7 @@ public class StorageAdapter {
         if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
             try {
                 DatabaseService.deleteActiveGenre();
+                SceneController.setScene("genre-view.fxml", "Genres");
             } catch (SQLException exception) {
                 if (Objects.equals(1451, exception.getErrorCode())) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -125,6 +128,7 @@ public class StorageAdapter {
         if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
             try {
                 DatabaseService.deleteActiveAuthor();
+                SceneController.setScene("author-view.fxml", "Genres");
             } catch (SQLException exception) {
                 if (Objects.equals(1451, exception.getErrorCode())) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -143,6 +147,7 @@ public class StorageAdapter {
         if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
             try {
                 DatabaseService.deleteActivePublisher();
+                SceneController.setScene("publisher-view.fxml", "Genres");
             } catch (SQLException exception) {
                 if (Objects.equals(1451, exception.getErrorCode())) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
