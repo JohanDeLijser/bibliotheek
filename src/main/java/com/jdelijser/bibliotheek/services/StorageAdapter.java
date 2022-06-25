@@ -25,7 +25,7 @@ public class StorageAdapter {
     }
 
     public static void addBook(Book book) throws SQLException {
-        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+        if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
             DatabaseService.addBook(book);
             return;
         }
@@ -34,7 +34,7 @@ public class StorageAdapter {
     }
 
     public static void addGenre(Genre genre) throws SQLException {
-        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+        if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
             DatabaseService.addGenre(genre);
             return;
         }
@@ -43,7 +43,7 @@ public class StorageAdapter {
     }
 
     public static void addAuthor(Author author) throws SQLException {
-        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+        if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
             DatabaseService.addAuthor(author);
             return;
         }
@@ -52,7 +52,7 @@ public class StorageAdapter {
     }
 
     public static void addPublisher(Publisher publisher) throws SQLException {
-        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+        if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
             DatabaseService.addPublisher(publisher);
             return;
         }
@@ -61,7 +61,7 @@ public class StorageAdapter {
     }
 
     public static ArrayList<Book> getBooks() throws SQLException {
-        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+        if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
             return DatabaseService.getBooks();
         }
 
@@ -69,7 +69,7 @@ public class StorageAdapter {
     }
 
     public static ArrayList<Genre> getGenres() throws SQLException {
-        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+        if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
             return DatabaseService.getGenres();
         }
 
@@ -77,7 +77,7 @@ public class StorageAdapter {
     }
 
     public static ArrayList<Author> getAuthors() throws SQLException {
-        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+        if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
             return DatabaseService.getAuthors();
         }
 
@@ -85,7 +85,7 @@ public class StorageAdapter {
     }
 
     public static ArrayList<Publisher> getPublishers() throws SQLException {
-        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+        if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
             return DatabaseService.getPublishers();
         }
 
@@ -93,7 +93,7 @@ public class StorageAdapter {
     }
 
     public static void deleteActiveBook() throws SQLException, IOException {
-        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+        if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
             DatabaseService.deleteActiveBook();
             return;
         }
@@ -102,7 +102,7 @@ public class StorageAdapter {
     }
 
     public static void deleteActiveGenre() throws SQLException, IOException {
-        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+        if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
             DatabaseService.deleteActiveGenre();
             return;
         }
@@ -111,7 +111,7 @@ public class StorageAdapter {
     }
 
     public static void deleteActiveAuthor() throws SQLException, IOException {
-        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+        if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
             DatabaseService.deleteActiveAuthor();
             return;
         }
@@ -120,11 +120,19 @@ public class StorageAdapter {
     }
 
     public static void deleteActivePublisher() throws SQLException, IOException {
-        if (Objects.equals(ActiveSource.getInstance().getSource(), STORAGE_METHOD_DATABASE)) {
+        if (StorageAdapter.isDatabase(StorageAdapter.getSource())) {
             DatabaseService.deleteActivePublisher();
             return;
         }
 
         FileService.deleteActivePublisher();
+    }
+
+    public static String getSource() {
+        return ActiveSource.getInstance().getSource();
+    }
+
+    public static boolean isDatabase(String source) {
+        return Objects.equals(source, STORAGE_METHOD_DATABASE);
     }
 }
